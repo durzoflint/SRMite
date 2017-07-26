@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">SRMite</string>
+    <string name="title_activity_home">SRMite</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="Profile_Banner">ca-app-pub-1997672390726507/4662550475</string>
+    <string name="TestPerformance_Banner">ca-app-pub-1997672390726507/1569483270</string>
+    <string name="Attendance_Banner">ca-app-pub-1997672390726507/3046216471</string>
+
+    <string name="title_activity_advertisment">Fests / Events</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_sgpa">Calculate Your SGPA</string>
+</resources>

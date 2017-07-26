@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "676214580573",
+    "firebase_url": "https://srmite-e5a5a.firebaseio.com",
+    "project_id": "srmite-e5a5a",
+    "storage_bucket": "srmite-e5a5a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:676214580573:android:e9c20caf172b0d6f",
+        "android_client_info": {
+          "package_name": "innominatebit.srmite"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "676214580573-vv07qj62t20la6d7ge2l4tt5g2sh4p5q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "innominatebit.srmite",
+            "certificate_hash": "A29B399F5A4701DFD6408DA39B1E52E391E92743"
+          }
+        },
+        {
+          "client_id": "676214580573-t0lim02ddue2fk7b5p035ds9acl0ss8o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdDlu626Z7s2FG8Pc27affBHlIOqtEt9I"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "676214580573-t0lim02ddue2fk7b5p035ds9acl0ss8o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
