@@ -111,7 +111,7 @@ public class LoginActivity extends AppCompatActivity {
         madewith.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent aboutuspage=new Intent(context,AboutUs.class);
+                Intent aboutuspage=new Intent(context,MeetTheDevelopers.class);
                 startActivity(aboutuspage);
             }
         });

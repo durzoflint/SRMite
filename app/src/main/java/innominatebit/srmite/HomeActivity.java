@@ -42,6 +42,7 @@ public class HomeActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_home, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -92,7 +93,7 @@ public class HomeActivity extends AppCompatActivity {
         }
         if(id==R.id.aboutus)
         {
-            Intent intent=new Intent(this,AboutUs.class);
+            Intent intent=new Intent(this,MeetTheDevelopers.class);
             startActivity(intent);
         }
         if(id==R.id.action_attendancegenie)
@@ -135,6 +136,7 @@ public class HomeActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
