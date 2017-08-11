@@ -23,36 +23,36 @@
         android:layout_centerHorizontal="true" />
 
     <EditText
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_marginBottom="30dp"
         android:id="@+id/registernum"
-        android:hint="Register Number / Student ID"
+        android:layout_width="250sp"
+        android:layout_height="wrap_content"
         android:layout_above="@+id/password"
         android:layout_centerHorizontal="true"
-        android:layout_width="250sp"
-        android:gravity="center_vertical|center" />
+        android:layout_marginBottom="30dp"
+        android:ems="10"
+        android:gravity="center_vertical|center"
+        android:hint="Register Number / Student ID"
+        android:inputType="textPersonName" />
 
     <EditText
+        android:id="@+id/password"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/password"
+        android:layout_centerVertical="true"
+        android:ems="10"
+        android:gravity="center_vertical|center"
         android:hint="Password"
-        android:gravity="center_vertical|center" />
+        android:inputType="textPassword" />
 
     <Button
-        android:text="Submit"
+        android:id="@+id/submit_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:id="@+id/submit_button"
         android:layout_below="@+id/password"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:text="Submit" />
 
     <WebView
         android:layout_width="match_parent"
@@ -83,14 +83,14 @@
         android:textColor="@color/colorAccent" />
 
     <CheckBox
-        android:text="Remember Me"
+        android:id="@+id/rememberpasswordbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:id="@+id/rememberpasswordbox"
-        android:gravity="center"
         android:layout_below="@+id/password"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:gravity="center"
+        android:text="Remember Me" />
 
     <TextView
         android:id="@+id/gpa"

@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -29,6 +30,8 @@ import android.widget.Toast;
 import com.google.android.gms.ads.MobileAds;
 
 import java.util.ArrayList;
+
+//TODO Make all images in drawable xxxhdpi, mdpi and all that
 
 public class LoginActivity extends AppCompatActivity {
     boolean flag;
@@ -48,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_login_new);/*
         MobileAds.initialize(getApplicationContext(), "ca-app-pub-1997672390726507~7755617672");
         context=this;
         loginPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
@@ -242,7 +245,7 @@ public class LoginActivity extends AppCompatActivity {
                         .setIcon(android.R.drawable.radiobutton_on_background)
                         .create().show();
             }
-        });
+        });*/
     }
     class Load extends AsyncTask<Void,Void,Void> {
         @Override
