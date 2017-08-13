@@ -22,6 +22,7 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -35,7 +36,7 @@ import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity {
     boolean flag;
-    Button submit_button;
+    ImageView submit_button;
     static boolean attendancenotfound=false,testperformancenotfound=false;
     static ArrayList<String> profiledetails,data;
     static Subject[] subjects;
@@ -51,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_new);/*
+        setContentView(R.layout.activity_login_new);
         MobileAds.initialize(getApplicationContext(), "ca-app-pub-1997672390726507~7755617672");
         context=this;
         loginPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
@@ -83,6 +84,11 @@ public class LoginActivity extends AppCompatActivity {
         final EditText registernum=(EditText)findViewById(R.id.registernum);
         final EditText password=(EditText)findViewById(R.id.password);
         final CheckBox rememberpasswordbox=(CheckBox)findViewById(R.id.rememberpasswordbox);
+
+        //todo remove this
+        registernum.setText("RA1511003040022");
+        password.setText("SRMpassword");
+
         rememberpasswordbox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,7 +107,7 @@ public class LoginActivity extends AppCompatActivity {
             password.setText(loginPreferences.getString("password", ""));
             rememberpasswordbox.setChecked(true);
         }
-        TextView contactus=(TextView)findViewById(R.id.contactustext);
+        ImageView contactus=(ImageView)findViewById(R.id.contactustext);
         contactus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -109,8 +115,8 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(contactpage);
             }
         });
-        TextView madewith=(TextView)findViewById(R.id.madewith);
-        madewith.setText("Made with \u2764 from Vadapalani!");
+        ImageView madewith=(ImageView)findViewById(R.id.madewith);
+        //madewith.setText("Made with \u2764 from Vadapalani!");
         madewith.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -152,12 +158,13 @@ public class LoginActivity extends AppCompatActivity {
         });
         count++;
         webview.loadUrl("http://evarsity.srmuniv.ac.in/srmswi/usermanager/ParentLogin.jsp");
-        submit_button = (Button)findViewById(R.id.submit_button);
+        submit_button = (ImageView)findViewById(R.id.submit_button);
         submit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
-                if((submit_button.getText().toString()).equals("SUBMIT")) {
+                //if((submit_button.getText().toString()).equals("SUBMIT")) {
+                if (flag){
                     if (isOnline()) {
                         String regnum = registernum.getText().toString();
                         String pass = password.getText().toString();
@@ -211,10 +218,10 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(context, "Your Device is Offline. Please connect to the internet and restart application.", Toast.LENGTH_LONG).show();
             }
         });
-        submit_button.setText("Establishing Connection");
+        //submit_button.setText("Establishing Connection");
         Load load=new Load();
         load.execute();
-        TextView gpa=(TextView)findViewById(R.id.gpa);
+        ImageView gpa=(ImageView)findViewById(R.id.gpa);
         gpa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -245,7 +252,7 @@ public class LoginActivity extends AppCompatActivity {
                         .setIcon(android.R.drawable.radiobutton_on_background)
                         .create().show();
             }
-        });*/
+        });
     }
     class Load extends AsyncTask<Void,Void,Void> {
         @Override
@@ -274,7 +281,10 @@ public class LoginActivity extends AppCompatActivity {
                 new Load().execute();
             }
             else
-                submit_button.setText("SUBMIT");
+            {
+                submit_button.setImageResource(R.drawable.ic_arrow_forward_black_24dp);
+                //submit_button.setText("SUBMIT");
+            }
         }
     }
     class Wait extends AsyncTask<Void,Void,Void> {
