@@ -80,11 +80,6 @@ public class LoginActivity extends AppCompatActivity {
         final EditText registernum=(EditText)findViewById(R.id.registernum);
         final EditText password=(EditText)findViewById(R.id.password);
         final CheckBox rememberpasswordbox=(CheckBox)findViewById(R.id.rememberpasswordbox);
-
-        //todo remove this
-        registernum.setText("RA1511003040022");
-        password.setText("SRMpassword");
-
         rememberpasswordbox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

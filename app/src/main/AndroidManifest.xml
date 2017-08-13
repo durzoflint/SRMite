@@ -34,7 +34,7 @@
             android:name=".SGPA"
             android:label="@string/title_activity_sgpa"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".CGPA"/>
+        <activity android:name=".CGPA" />
     </application>
 
 </manifest>

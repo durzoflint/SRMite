@@ -115,13 +115,15 @@
             android:paddingBottom="10dp">
 
             <LinearLayout
+                android:id="@+id/attendancedata"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:id="@+id/attendancedata"
                 android:foregroundGravity="center"
                 android:gravity="center"
-                android:paddingBottom="50dp" />
+                android:orientation="vertical"
+                android:paddingBottom="50dp"
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp" />
         </ScrollView>
     </LinearLayout>
 
