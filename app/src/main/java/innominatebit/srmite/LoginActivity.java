@@ -14,18 +14,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.MobileAds;
@@ -45,9 +42,8 @@ public class LoginActivity extends AppCompatActivity {
     WebView webview;
     int count=0;
     Context context;
-    private SharedPreferences loginPreferences;
     private SharedPreferences.Editor loginPrefsEditor;
-    private Boolean saveLogin,loginsuccess=false;
+    private Boolean loginsuccess=false;
     RadioGroup gpaRadioGroup;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login_new);
         MobileAds.initialize(getApplicationContext(), "ca-app-pub-1997672390726507~7755617672");
         context=this;
-        loginPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
+        SharedPreferences loginPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
         loginPrefsEditor = loginPreferences.edit();
         boolean dontshow = loginPreferences.getBoolean("Do Not Show Again", false);
         if(!dontshow)
@@ -101,7 +97,7 @@ public class LoginActivity extends AppCompatActivity {
                             .setCancelable(false).create().show();
             }
         });
-        saveLogin = loginPreferences.getBoolean("saveLogin", false);
+        Boolean saveLogin = loginPreferences.getBoolean("saveLogin", false);
         if (saveLogin) {
             registernum.setText(loginPreferences.getString("id", ""));
             password.setText(loginPreferences.getString("password", ""));
@@ -172,10 +168,10 @@ public class LoginActivity extends AppCompatActivity {
                             loginPrefsEditor.putBoolean("saveLogin", true);
                             loginPrefsEditor.putString("id", regnum);
                             loginPrefsEditor.putString("password", pass);
-                            loginPrefsEditor.commit();
+                            loginPrefsEditor.apply();
                         } else {
                             loginPrefsEditor.clear();
-                            loginPrefsEditor.commit();
+                            loginPrefsEditor.apply();
                         }
                         if (regnum.trim().length() == 0)
                             Toast.makeText(context, "Enter Register Number / Student ID", Toast.LENGTH_LONG).show();
@@ -254,7 +250,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-    class Load extends AsyncTask<Void,Void,Void> {
+    private class Load extends AsyncTask<Void,Void,Void> {
         @Override
         protected void onPreExecute()
         {
@@ -287,7 +283,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     }
-    class Wait extends AsyncTask<Void,Void,Void> {
+    private class Wait extends AsyncTask<Void,Void,Void> {
         ProgressDialog progressDialog;
         boolean serverProblem;
         @Override
@@ -352,7 +348,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     }
-    class Home extends AsyncTask<Void,Void,Void> {
+    private class Home extends AsyncTask<Void,Void,Void> {
         ProgressDialog progressDialog;
         @Override
         protected void onPreExecute()
@@ -384,7 +380,7 @@ public class LoginActivity extends AppCompatActivity {
             progressDialog.dismiss();
         }
     }
-    class Test extends AsyncTask<Void,Void,Void> {
+    private class Test extends AsyncTask<Void,Void,Void> {
         ProgressDialog progressDialog;
         @Override
         protected void onPreExecute()
@@ -416,7 +412,7 @@ public class LoginActivity extends AppCompatActivity {
             progressDialog.dismiss();
         }
     }
-    class Attendance extends AsyncTask<Void,Void,Void> {
+    private class Attendance extends AsyncTask<Void,Void,Void> {
         ProgressDialog progressDialog;
         @Override
         protected void onPreExecute()
@@ -488,7 +484,7 @@ public class LoginActivity extends AppCompatActivity {
                 rawdata=rawdata.substring(rawdata.indexOf("tablecontent02")+14);
                 subjects[i].setTotal(getData(rawdata));
             }
-            int i=0;
+            int i;
             attendancedata=new String[6];
             rawdata=rawdata.substring(rawdata.indexOf("tabletitle05")+13);
             for(i=0;i<5;i++)
@@ -545,12 +541,12 @@ public class LoginActivity extends AppCompatActivity {
     void processProfileDetails() {
         String rawdata=data.toString();
         int n=getNumbers("tablecontent01",rawdata);
-        String x="";
+        String x;
         for(int i=1;i<=n-4;i++)
         {
             rawdata=rawdata.substring(rawdata.indexOf("tablecontent01")+14);
             x=getData(rawdata).trim();
-            if(x.equals("")||x.indexOf("WELCOME")!=-1)
+            if(x.equals("")|| x.contains("WELCOME"))
                 continue;
             if(x.equals("Parent Contact Mobile No. (10 digit)")
                     ||x.equals("Parent Contact Mobile No.")||x.equals("Place of Birth"))
@@ -564,12 +560,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
         data.clear();
-    }
-    boolean has(int a[],int n) {
-        for(int i=0;i<a.length;i++)
-            if(a[i]==n)
-                return true;
-        return false;
     }
     String getData(String source) {
         int a=source.indexOf('>');
@@ -588,7 +578,7 @@ public class LoginActivity extends AppCompatActivity {
         }
         return c;
     }
-    class MyJavaScriptInterface {
+    private class MyJavaScriptInterface {
         @JavascriptInterface
         public void showHTML(String html) {
             html=html.trim();
