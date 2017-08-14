@@ -189,7 +189,7 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
         ads:adSize="BANNER"
-        ads:adUnitId="@string/Profile_Banner">
+        ads:adUnitId="@string/TimeTable_Banner">
     </com.google.android.gms.ads.AdView>
 
 </RelativeLayout>

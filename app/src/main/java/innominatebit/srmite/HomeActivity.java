@@ -144,14 +144,16 @@ public class HomeActivity extends AppCompatActivity
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    Profile profile =new Profile();
-                    return profile;
+                    Attendance attendance=new Attendance();
+                    return attendance;
+                    /*Profile profile =new Profile();
+                    return profile;*/
                 case 1:
                     TestPerformance testPerformance=new TestPerformance();
                     return testPerformance;
                 case 2:
-                    Attendance attendance=new Attendance();
-                    return attendance;
+                    TimeTable timeTable = new TimeTable();
+                    return timeTable;
             }
             return null;
         }
@@ -163,11 +165,11 @@ public class HomeActivity extends AppCompatActivity
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Profile";
+                    return "Attendance";
                 case 1:
                     return "Test Performance";
                 case 2:
-                    return "Attendance";
+                    return "Time Table";
             }
             return null;
         }

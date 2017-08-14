@@ -1,6 +1,5 @@
 package innominatebit.srmite;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,10 +12,6 @@ import com.google.android.gms.ads.AdView;
 
 import java.util.ArrayList;
 
-/**
- * Created by Abhinav on 02-01-2017.
- */
-
 public class Profile extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -26,7 +21,6 @@ public class Profile extends Fragment {
         AdView mAdView = (AdView) rootView.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
-        Context c=this.getContext();
         ArrayList<String> mvalue=LoginActivity.profiledetails;
         String z="Name Register No. Office Name Course Name Father Name" +
                 " Date of Birth Sex Blood Group Address Student Contact Mobile No. (10 digit)" +

@@ -35,7 +35,8 @@ public class LoginActivity extends AppCompatActivity {
     boolean flag;
     ImageView submit_button;
     static boolean attendancenotfound=false,testperformancenotfound=false;
-    static ArrayList<String> profiledetails,data;
+    static ArrayList<String> profiledetails, data, days, subjectList, legends, legendMeaning;
+    static int numberOfHours;
     static Subject[] subjects;
     static Tests[] t;
     static String startdate="",enddate="",attendancedata[];
@@ -45,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
     private SharedPreferences.Editor loginPrefsEditor;
     private Boolean loginsuccess=false;
     RadioGroup gpaRadioGroup;
+    ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,6 +119,10 @@ public class LoginActivity extends AppCompatActivity {
         });
         profiledetails=new ArrayList<>();
         data=new ArrayList<>();
+        days = new ArrayList<>();
+        subjectList = new ArrayList<>();
+        legends = new ArrayList<>();
+        legendMeaning = new ArrayList<>();
         webview=(WebView)findViewById(R.id.webview);
         //webview.setVisibility(View.GONE);
         WebSettings webSettings=webview.getSettings();
@@ -141,7 +147,7 @@ public class LoginActivity extends AppCompatActivity {
                 {
                     webview.loadUrl("javascript:window.HtmlViewer.showHTML('<head>'+document.getElementsByTagName('html')[0].innerHTML+'</head>');");
                 }
-                if(count>=4&&count<6)
+                if(count>=4&&count<7)
                 {
                     webview.loadUrl("javascript:window.HtmlViewer.showHTML('<head>'+document.getElementsByTagName('html')[0].innerHTML+'</head>');");
                 }
@@ -279,7 +285,6 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
     private class Wait extends AsyncTask<Void,Void,Void> {
-        ProgressDialog progressDialog;
         boolean serverProblem;
         @Override
         protected void onPreExecute()
@@ -324,7 +329,6 @@ public class LoginActivity extends AppCompatActivity {
         protected void onPostExecute(Void aVoid)
         {
             super.onPostExecute(aVoid);
-            progressDialog.dismiss();
             Home home = new Home();
             home.execute();
         }
@@ -344,12 +348,11 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
     private class Home extends AsyncTask<Void,Void,Void> {
-        ProgressDialog progressDialog;
         @Override
         protected void onPreExecute()
         {
             super.onPreExecute();
-            progressDialog = ProgressDialog.show(context, "Wait!","Fetching Profile");
+            progressDialog.setMessage("Fetching Profile");
             count++;
             webview.loadUrl("http://evarsity.srmuniv.ac.in/srmswi/resource/StudentDetailsResources.jsp?resourceid=1");
         }
@@ -364,26 +367,23 @@ public class LoginActivity extends AppCompatActivity {
         protected void onPostExecute(Void aVoid)
         {
             super.onPostExecute(aVoid);
-            progressDialog.dismiss();
             Test test=new Test();
             test.execute();
         }
         @Override
-        protected void onCancelled(Void aVoid)
-        {
-            super.onCancelled(aVoid);
+        protected void onCancelled(Void aVoid) {
             progressDialog.dismiss();
+            super.onCancelled(aVoid);
         }
     }
     private class Test extends AsyncTask<Void,Void,Void> {
-        ProgressDialog progressDialog;
         @Override
         protected void onPreExecute()
         {
             super.onPreExecute();
             count++;
             webview.loadUrl("http://evarsity.srmuniv.ac.in/srmswi/resource/StudentDetailsResources.jsp?resourceid=16");
-            progressDialog = ProgressDialog.show(context, "Wait!","Fetching Test Performance");
+            progressDialog.setMessage("Fetching Test Performance");
         }
         @Override
         protected Void doInBackground(Void... voids)
@@ -396,26 +396,50 @@ public class LoginActivity extends AppCompatActivity {
         protected void onPostExecute(Void aVoid)
         {
             super.onPostExecute(aVoid);
-            progressDialog.dismiss();
-            Attendance attend=new Attendance();
-            attend.execute();
+            TimeTable timeTable = new TimeTable();
+            timeTable.execute();
         }
         @Override
         protected void onCancelled(Void aVoid)
         {
-            super.onCancelled(aVoid);
             progressDialog.dismiss();
+            super.onCancelled(aVoid);
+        }
+    }
+    private class TimeTable extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            count++;
+            webview.loadUrl("http://evarsity.srmuniv.ac.in/srmswi/resource/StudentDetailsResources.jsp?resourceid=5");
+            progressDialog.setMessage("Fetching Time Table");
+        }
+        @Override
+        protected Void doInBackground(Void... voids) {
+            while (data.size()!=1);
+            processTimeTable();
+            return null;
+        }
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            Attendance attend=new Attendance();
+            attend.execute();
+        }
+        @Override
+        protected void onCancelled(Void aVoid) {
+            progressDialog.dismiss();
+            super.onCancelled(aVoid);
         }
     }
     private class Attendance extends AsyncTask<Void,Void,Void> {
-        ProgressDialog progressDialog;
         @Override
         protected void onPreExecute()
         {
             super.onPreExecute();
             count++;
             webview.loadUrl("http://evarsity.srmuniv.ac.in/srmswi/resource/StudentDetailsResources.jsp?resourceid=7");
-            progressDialog = ProgressDialog.show(context, "Wait!","Fetching Attendance");
+            progressDialog.setMessage("Fetching Attendance");
         }
         @Override
         protected Void doInBackground(Void... voids)
@@ -428,11 +452,11 @@ public class LoginActivity extends AppCompatActivity {
         protected void onPostExecute(Void aVoid)
         {
             super.onPostExecute(aVoid);
-            progressDialog.dismiss();
             webview.loadUrl("http://evarsity.srmuniv.ac.in/srmswi/usermanager/Logout.jsp");
             webview.loadUrl("http://evarsity.srmuniv.ac.in/srmswi/usermanager/ParentLogin.jsp");
             Intent intent=new Intent(context,HomeActivity.class);
             startActivity(intent);
+            progressDialog.dismiss();
         }
         @Override
         protected void onCancelled(Void aVoid)
@@ -440,6 +464,42 @@ public class LoginActivity extends AppCompatActivity {
             super.onCancelled(aVoid);
             progressDialog.dismiss();
         }
+    }
+    void processTimeTable() {
+        String rawdata = data.toString();
+        rawdata=rawdata.substring(rawdata.indexOf("tabletitle05"));
+        rawdata=rawdata.substring(rawdata.indexOf("tr")+2);
+        String hours = rawdata.substring(0, rawdata.indexOf("/tr"));
+        numberOfHours = getNumbers("tabletitle05", hours);
+        rawdata = rawdata.substring(rawdata.indexOf("/tr")+3);
+        while(rawdata.contains("tabletitle05"))
+        {
+            int j = rawdata.indexOf("tabletitle05");
+            String day = rawdata.substring(j + 12);
+            days.add(getData(day));
+            for(int i=0;i<numberOfHours;i++)
+            {
+                int k = rawdata.indexOf("tablecontent02");
+                String subject = rawdata.substring(k + 14);
+                rawdata = rawdata.substring(k + 14);
+                subjectList.add(getData(subject)+",");
+            }
+            rawdata = rawdata.substring(j + 12);
+        }
+        while(rawdata.contains("tablecontent01"))
+        {
+            int j = rawdata.indexOf("tablecontent01");
+            String day = rawdata.substring(j + 12);
+            legends.add(getData(day));
+            rawdata = rawdata.substring(j + 12);
+            j = rawdata.indexOf("tablecontent01");
+            String legend = rawdata.substring(j + 12);
+            legendMeaning.add(getData(legend));;
+            rawdata = rawdata.substring(j + 12);
+        }
+        legends.add("-");
+        legendMeaning.add("FREE HOUR");;
+        data.clear();
     }
     void processAttendance() {
         String rawdata;

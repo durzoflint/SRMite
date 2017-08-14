@@ -14,10 +14,6 @@ import android.widget.TextView;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
-/**
- * Created by Abhinav on 02-01-2017.
- */
-
 public class TestPerformance extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

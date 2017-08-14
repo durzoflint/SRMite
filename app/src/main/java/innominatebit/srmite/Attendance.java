@@ -33,6 +33,9 @@ public class Attendance extends Fragment {
         LinearLayout totaldata=(LinearLayout)rootView.findViewById(R.id.attendancedata);
         LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams
                 .MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT,1);
+        lparams.setMargins(10, 10, 10, 10);
+        LinearLayout.LayoutParams lparam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams
+                .MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT,1);
         LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams
                 .WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         textParams.gravity=Gravity.CENTER;
@@ -68,24 +71,6 @@ public class Attendance extends Fragment {
                             .create().show();
                 }
             });
-            /*TextView date=(TextView)rootView.findViewById(R.id.date);
-            date.setText("From "+startdate+" To "+enddate);
-            TextView tv1=(TextView)rootView.findViewById(R.id.maxhourstext);
-            tv1.setText(tv1.getText()+"\n"+datatotal[i++]);
-            TextView tv2=(TextView)rootView.findViewById(R.id.atthourstext);
-            tv2.setText(tv2.getText()+"\n"+datatotal[i++]);
-            TextView tv3=(TextView)rootView.findViewById(R.id.absenthourstext);
-            tv3.setText(tv3.getText()+"\n"+datatotal[i++]);
-            TextView tv4=(TextView)rootView.findViewById(R.id.averagetext);
-            tv4.setText(tv4.getText()+"\n"+datatotal[i++]);
-            TextView tv5=(TextView)rootView.findViewById(R.id.od_mltext);
-            tv5.setText(tv5.getText()+"\n"+datatotal[i++]);
-            TextView tv6=(TextView)rootView.findViewById(R.id.totalpercentage);
-            temporary=datatotal[i];
-            temp=Double.parseDouble(temporary);
-            tv6.setText(tv6.getText()+"\n"+temp);
-            if(temp<=75)
-                tv6.setTextColor(Color.RED);*/
             final Subject sub[]=LoginActivity.subjects;
             LinearLayout previousLinearLayout = new LinearLayout(context);
             for(int i=0;i<sub.length;i++)
@@ -94,7 +79,7 @@ public class Attendance extends Fragment {
                 c.setLayoutParams(lparams);
                 c.setMaxCardElevation(10);
                 LinearLayout xyz = new LinearLayout(context);
-                xyz.setLayoutParams(lparams);
+                xyz.setLayoutParams(lparam);
                 xyz.setOrientation(LinearLayout.VERTICAL);
                 TextView t1=new TextView(context);
                 t1.setLayoutParams(textParams);
@@ -150,7 +135,7 @@ public class Attendance extends Fragment {
                 if(i%2 == 0)
                 {
                     LinearLayout myLinearLayout = new LinearLayout(context);
-                    myLinearLayout.setLayoutParams(lparams);
+                    myLinearLayout.setLayoutParams(lparam);
                     myLinearLayout.setOrientation(LinearLayout.HORIZONTAL);
                     myLinearLayout.addView(c);
                     previousLinearLayout = myLinearLayout;
