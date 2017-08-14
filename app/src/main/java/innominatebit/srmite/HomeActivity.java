@@ -56,105 +56,7 @@ public class HomeActivity extends AppCompatActivity
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
         navigationDrawer();
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_home, menu);
-        return true;
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.gpacalc)
-        {
-            LayoutInflater inflater = LayoutInflater.from(HomeActivity.this);
-            final View radioLayout = inflater.inflate(R.layout.gpa, null);
-            gpaRadioGroup = (RadioGroup)radioLayout.findViewById(R.id.gparadiogroup);
-            new AlertDialog.Builder(HomeActivity.this)
-                    .setView(radioLayout)
-                    .setTitle("Select")
-                    .setMessage("\nPlease select SGPA to find your SGPA or CGPA for your CGPA.\n")
-                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            int selectedId=gpaRadioGroup.getCheckedRadioButtonId();
-                            RadioButton gpaoption=(RadioButton)radioLayout.findViewById(selectedId);
-                            if(gpaoption.getText().toString().equals("SGPA"))
-                            {
-                                Intent sgpapage=new Intent(HomeActivity.this,SGPA.class);
-                                startActivity(sgpapage);
-                            }
-                            else
-                            {
-                                Intent cgpapage=new Intent(HomeActivity.this,CGPA.class);
-                                startActivity(cgpapage);
-                            }
-                        }
-                    })
-                    .setIcon(android.R.drawable.radiobutton_on_background)
-                    .create().show();
-            return true;
-        }
-        if (id == R.id.action_logout)
-        {
-            logout();
-            return true;
-        }
-        if(id==R.id.action_contactus)
-        {
-            Intent intent=new Intent(this,ContactUs.class);
-            startActivity(intent);
-        }
-        if(id==R.id.donateus)
-        {
-            Intent intent=new Intent(this,DonateUs.class);
-            startActivity(intent);
-        }
-        if(id==R.id.aboutus)
-        {
-            Intent intent=new Intent(this,MeetTheDevelopers.class);
-            startActivity(intent);
-        }
-        if(id==R.id.action_attendancegenie)
-        {
-            if(!LoginActivity.attendancenotfound)
-            {
-                Intent intent=new Intent(this,AttendanceGenie.class);
-                startActivity(intent);
-            }
-            else
-                Toast.makeText(this, "No Attendance Record Found", Toast.LENGTH_LONG).show();
-        }
-        if(id==R.id.action_ad)
-        {
-            Intent intent=new Intent(this,AdvertismentActivity.class);
-            startActivity(intent);
-        }
-        if(id==R.id.action_about)
-        {
-            new AlertDialog.Builder(this)
-                    .setTitle("Attention")
-                    .setMessage("This App shows your Profile Information, Test Performance and Attendance" +
-                            " Details. For any other details please visit the website directly. If you" +
-                            " find any issues in the content shown in the app please check the website before" +
-                            " reporting it. For any issues please contact the developer team at" +
-                            " info.srmite@gmail.com\n\nThank You\n~The Developer Team\n\n")
-                    .setPositiveButton(android.R.string.ok, null)
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .create().show();
-        }
-        if(id==R.id.action_rate)
-        {
-            try
-            {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id="+this.getPackageName())));
-            }
-            catch (Exception e){
-                Toast.makeText(this, "Error while connecting to Play Store", Toast.LENGTH_LONG).show();
-            }
-        }
-        return super.onOptionsItemSelected(item);
-    }
-    private class SectionsPagerAdapter extends FragmentPagerAdapter {
+        private class SectionsPagerAdapter extends FragmentPagerAdapter {
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
@@ -217,47 +119,105 @@ public class HomeActivity extends AppCompatActivity
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 int id = menuItem.getItemId();
-                switch (id) {
-                    case R.id.sponsors:
-                        Toast.makeText(HomeActivity.this, "Drawer item clicked", Toast.LENGTH_SHORT).show();
-                        drawerLayout.closeDrawers();
-                        break;
-                    case R.id.stockmarket:
-                        Toast.makeText(HomeActivity.this, "Drawer item clicked", Toast.LENGTH_SHORT).show();
-                        drawerLayout.closeDrawers();
-                        break;
-                    case R.id.highlights:
-                        Toast.makeText(HomeActivity.this, "Drawer item clicked", Toast.LENGTH_SHORT).show();
-                        drawerLayout.closeDrawers();
-                        break;
-                    case R.id.aboutus:
-                        Toast.makeText(HomeActivity.this, "Drawer item clicked", Toast.LENGTH_SHORT).show();
-                        drawerLayout.closeDrawers();
-                        break;
-                    case R.id.patrons:
-                        Toast.makeText(HomeActivity.this, "Drawer item clicked", Toast.LENGTH_SHORT).show();
-                        drawerLayout.closeDrawers();
-                        break;
-                    case R.id.team:
-                        Toast.makeText(HomeActivity.this, "Drawer item clicked", Toast.LENGTH_SHORT).show();
-                        drawerLayout.closeDrawers();
-                        break;
-                    case R.id.developers:
-                        Toast.makeText(HomeActivity.this, "Drawer item clicked", Toast.LENGTH_SHORT).show();
-                        drawerLayout.closeDrawers();
-                        break;
-                    case R.id.logout:
-                        Toast.makeText(HomeActivity.this, "Drawer item clicked", Toast.LENGTH_SHORT).show();
-                        drawerLayout.closeDrawers();
-                        break;
+                if (id == R.id.gpacalc)
+                {
+                    drawerLayout.closeDrawers();
+                    LayoutInflater inflater = LayoutInflater.from(HomeActivity.this);
+                    final View radioLayout = inflater.inflate(R.layout.gpa, null);
+                    gpaRadioGroup = (RadioGroup)radioLayout.findViewById(R.id.gparadiogroup);
+                    new AlertDialog.Builder(HomeActivity.this)
+                            .setView(radioLayout)
+                            .setTitle("Select")
+                            .setMessage("\nPlease select SGPA to find your SGPA or CGPA for your CGPA.\n")
+                            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    int selectedId=gpaRadioGroup.getCheckedRadioButtonId();
+                                    RadioButton gpaoption=(RadioButton)radioLayout.findViewById(selectedId);
+                                    if(gpaoption.getText().toString().equals("SGPA"))
+                                    {
+                                        Intent sgpapage=new Intent(HomeActivity.this,SGPA.class);
+                                        startActivity(sgpapage);
+                                    }
+                                    else
+                                    {
+                                        Intent cgpapage=new Intent(HomeActivity.this,CGPA.class);
+                                        startActivity(cgpapage);
+                                    }
+                                }
+                            })
+                            .setIcon(android.R.drawable.radiobutton_on_background)
+                            .create().show();
+
+                }
+                if (id == R.id.action_logout)
+                {
+                    drawerLayout.closeDrawers();
+                    logout();
+                }
+                if(id==R.id.action_contactus)
+                {
+                    drawerLayout.closeDrawers();
+                    Intent intent=new Intent(HomeActivity.this,ContactUs.class);
+                    startActivity(intent);
+                }
+                if(id==R.id.donateus)
+                {
+                    drawerLayout.closeDrawers();
+                    Intent intent=new Intent(HomeActivity.this,DonateUs.class);
+                    startActivity(intent);
+                }
+                if(id==R.id.aboutus)
+                {
+                    drawerLayout.closeDrawers();
+                    Intent intent=new Intent(HomeActivity.this,MeetTheDevelopers.class);
+                    startActivity(intent);
+                }
+                if(id==R.id.action_attendancegenie)
+                {
+                    drawerLayout.closeDrawers();
+                    if(!LoginActivity.attendancenotfound)
+                    {
+                        Intent intent=new Intent(HomeActivity.this,AttendanceGenie.class);
+                        startActivity(intent);
+                    }
+                    else
+                        Toast.makeText(HomeActivity.this, "No Attendance Record Found", Toast.LENGTH_LONG).show();
+                }
+                if(id==R.id.action_ad)
+                {
+                    drawerLayout.closeDrawers();
+                    Intent intent=new Intent(HomeActivity.this,AdvertismentActivity.class);
+                    startActivity(intent);
+                }
+                if(id==R.id.action_about)
+                {
+                    drawerLayout.closeDrawers();
+                    new AlertDialog.Builder(HomeActivity.this)
+                            .setTitle("Attention")
+                            .setMessage("This App shows your Profile Information, Test Performance and Attendance" +
+                                    " Details. For any other details please visit the website directly. If you" +
+                                    " find any issues in the content shown in the app please check the website before" +
+                                    " reporting it. For any issues please contact the developer team at" +
+                                    " info.srmite@gmail.com\n\nThank You\n~The Developer Team\n\n")
+                            .setPositiveButton(android.R.string.ok, null)
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .create().show();
+                }
+                if(id==R.id.action_rate)
+                {
+                    drawerLayout.closeDrawers();
+                    try
+                    {
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id="+HomeActivity.this.getPackageName())));
+                    }
+                    catch (Exception e){
+                        Toast.makeText(HomeActivity.this, "Error while connecting to Play Store", Toast.LENGTH_LONG).show();
+                    }
                 }
                 return true;
             }
-
         });
-        View header = nview.getHeaderView(0);
-        TextView name = (TextView) header.findViewById(R.id.name);
-        name.setText("Name Comes Here");
         dtoogle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.draweropen, R.string.drawerclose) {
             @Override
             public void onDrawerClosed(View v) {
@@ -271,18 +231,5 @@ public class HomeActivity extends AppCompatActivity
         drawerLayout.addDrawerListener(dtoogle);
         dtoogle.setDrawerIndicatorEnabled(true);
         dtoogle.syncState();
-    }
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState)
-    {
-        super.onPostCreate(savedInstanceState);
-        dtoogle.syncState();
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig)
-    {
-        super.onConfigurationChanged(newConfig);
-        dtoogle.onConfigurationChanged(newConfig);
     }
 }

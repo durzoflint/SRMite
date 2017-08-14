@@ -1,50 +1,40 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="innominatebit.srmite.HomeActivity">
     <item
         android:id="@+id/gpacalc"
-        android:orderInCategory="92"
-        android:title="GPA Calculator"
-        app:showAsAction="ifRoom" />
+        android:icon="@mipmap/ic_launcher"
+        android:title="GPA Calculator" />
     <item
         android:id="@+id/action_attendancegenie"
-        android:orderInCategory="90"
-        android:title="Genie"
-        app:showAsAction="ifRoom" />
+        android:title="Attendance Genie"
+        android:icon="@mipmap/ic_launcher" />
     <item
         android:id="@+id/action_rate"
-        android:orderInCategory="100"
-        android:title="Love Us? Rate Us!"
-        app:showAsAction="never" />
+        android:icon="@mipmap/ic_launcher"
+        android:title="Love Us? Rate Us!" />
     <item
         android:id="@+id/action_ad"
-        android:orderInCategory="100"
         android:title="Events/Fests"
-        app:showAsAction="never" />
+        android:icon="@mipmap/ic_launcher" />
     <item
         android:id="@+id/action_contactus"
-        android:orderInCategory="100"
-        android:title="Contact Us"
-        app:showAsAction="never" />
+        android:icon="@mipmap/ic_launcher"
+        android:title="Contact Us" />
     <item
         android:id="@+id/aboutus"
-        android:orderInCategory="100"
-        android:title="Meet the Developers"
-        app:showAsAction="never" />
+        android:icon="@mipmap/ic_launcher"
+        android:title="Meet the Developers" />
     <item
         android:id="@+id/donateus"
-        android:orderInCategory="100"
-        android:title="Donate Us"
-        app:showAsAction="never" />
+        android:icon="@mipmap/ic_launcher"
+        android:title="Donate Us" />
     <item
         android:id="@+id/action_about"
-        android:orderInCategory="100"
-        android:title="About the App"
-        app:showAsAction="never" />
+        android:icon="@mipmap/ic_launcher"
+        android:title="About the App" />
     <item
         android:id="@+id/action_logout"
-        android:orderInCategory="100"
-        android:title="Logout"
-        app:showAsAction="never" />
+        android:icon="@mipmap/ic_launcher"
+        android:title="Logout" />
 </menu>
