@@ -2,10 +2,15 @@ package innominatebit.srmite;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.net.Uri;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.Toolbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -18,10 +23,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.HashMap;
 
 public class HomeActivity extends AppCompatActivity
 {
+    private NavigationView nview;
+    private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle dtoogle;
+    private Toolbar toolbar;
+
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
     RadioGroup gpaRadioGroup;
@@ -29,14 +42,19 @@ public class HomeActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setOffscreenPageLimit(2);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
+        navigationDrawer();
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -191,5 +209,80 @@ public class HomeActivity extends AppCompatActivity
                         startActivity(i);
                     }
                 }).create().show();
+    }
+    public void navigationDrawer() {
+        nview = (NavigationView) findViewById(R.id.navigation_view);
+        nview.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                int id = menuItem.getItemId();
+                switch (id) {
+                    case R.id.sponsors:
+                        Toast.makeText(HomeActivity.this, "Drawer item clicked", Toast.LENGTH_SHORT).show();
+                        drawerLayout.closeDrawers();
+                        break;
+                    case R.id.stockmarket:
+                        Toast.makeText(HomeActivity.this, "Drawer item clicked", Toast.LENGTH_SHORT).show();
+                        drawerLayout.closeDrawers();
+                        break;
+                    case R.id.highlights:
+                        Toast.makeText(HomeActivity.this, "Drawer item clicked", Toast.LENGTH_SHORT).show();
+                        drawerLayout.closeDrawers();
+                        break;
+                    case R.id.aboutus:
+                        Toast.makeText(HomeActivity.this, "Drawer item clicked", Toast.LENGTH_SHORT).show();
+                        drawerLayout.closeDrawers();
+                        break;
+                    case R.id.patrons:
+                        Toast.makeText(HomeActivity.this, "Drawer item clicked", Toast.LENGTH_SHORT).show();
+                        drawerLayout.closeDrawers();
+                        break;
+                    case R.id.team:
+                        Toast.makeText(HomeActivity.this, "Drawer item clicked", Toast.LENGTH_SHORT).show();
+                        drawerLayout.closeDrawers();
+                        break;
+                    case R.id.developers:
+                        Toast.makeText(HomeActivity.this, "Drawer item clicked", Toast.LENGTH_SHORT).show();
+                        drawerLayout.closeDrawers();
+                        break;
+                    case R.id.logout:
+                        Toast.makeText(HomeActivity.this, "Drawer item clicked", Toast.LENGTH_SHORT).show();
+                        drawerLayout.closeDrawers();
+                        break;
+                }
+                return true;
+            }
+
+        });
+        View header = nview.getHeaderView(0);
+        TextView name = (TextView) header.findViewById(R.id.name);
+        name.setText("Name Comes Here");
+        dtoogle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.draweropen, R.string.drawerclose) {
+            @Override
+            public void onDrawerClosed(View v) {
+                super.onDrawerClosed(v);
+            }
+            @Override
+            public void onDrawerOpened(View v) {
+                super.onDrawerOpened(v);
+            }
+        };
+        drawerLayout.addDrawerListener(dtoogle);
+        dtoogle.setDrawerIndicatorEnabled(true);
+        dtoogle.syncState();
+    }
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState)
+    {
+        super.onPostCreate(savedInstanceState);
+        dtoogle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig)
+    {
+        super.onConfigurationChanged(newConfig);
+        dtoogle.onConfigurationChanged(newConfig);
     }
 }

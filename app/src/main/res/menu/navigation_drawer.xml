@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/sponsors"
+            android:icon="@mipmap/ic_launcher"
+            android:title="One" />
+
+        <item
+            android:id="@+id/stockmarket"
+            android:icon="@mipmap/ic_launcher"
+            android:title="Two" />
+
+        <item
+            android:id="@+id/highlights"
+            android:icon="@mipmap/ic_launcher"
+            android:title="Three" />
+
+        <item
+            android:id="@+id/aboutus"
+            android:icon="@mipmap/ic_launcher"
+            android:title="Four" />
+
+        <item
+            android:id="@+id/patrons"
+            android:icon="@mipmap/ic_launcher"
+            android:title="Five" />
+
+        <item
+            android:id="@+id/team"
+            android:icon="@mipmap/ic_launcher"
+            android:title="Six" />
+
+        <item
+            android:id="@+id/developers"
+            android:icon="@mipmap/ic_launcher"
+            android:title="Seven" />
+
+        <item
+            android:id="@+id/logout"
+            android:icon="@mipmap/ic_launcher"
+            android:title="Eight" />
+
+    </group>
+
+</menu>
