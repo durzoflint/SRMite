@@ -1,20 +1,19 @@
 package innominatebit.srmite;
 
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
-import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
@@ -100,7 +99,7 @@ public class Attendance extends Fragment {
                 }
                 else if(temp<75)
                 {
-                    t8.setText(temporary+"%"+calculate(sub[i].maxhours,sub[i].absenthours)+"\n");
+                    t8.setText(temporary+"%\n"+calculate(sub[i].maxhours,sub[i].absenthours));
                     t8.setTextColor(Color.WHITE);
                     t1.setTextColor(Color.WHITE);
                     c.setCardBackgroundColor(Color.RED);
@@ -110,8 +109,22 @@ public class Attendance extends Fragment {
                 t8.setPadding(0,8,0,8);
                 t8.setTextSize(16);
                 t8.setGravity(Gravity.CENTER);
+                LayoutInflater progressInflater = LayoutInflater.from(context);
+                SeekBar seekBar = (SeekBar) progressInflater.inflate(R.layout.progress_bar, null);
+                seekBar.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View view, MotionEvent motionEvent) {
+                        return true;
+                    }
+                });
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    seekBar.setProgress((int)temp, true);
+                }
+                else
+                    seekBar.setProgress((int)temp);
                 xyz.addView(t1);
                 xyz.addView(t8);
+                xyz.addView(seekBar);
                 c.addView(xyz);
                 final int finalI = i;
                 c.setOnClickListener(new View.OnClickListener() {

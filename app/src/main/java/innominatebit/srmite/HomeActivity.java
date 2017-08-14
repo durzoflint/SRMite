@@ -2,7 +2,6 @@ package innominatebit.srmite;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.net.Uri;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -10,7 +9,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.Toolbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -18,25 +16,16 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.HashMap;
 
 public class HomeActivity extends AppCompatActivity
 {
-    private NavigationView nview;
     private DrawerLayout drawerLayout;
-    private ActionBarDrawerToggle dtoogle;
     private Toolbar toolbar;
-
-    private SectionsPagerAdapter mSectionsPagerAdapter;
-    private ViewPager mViewPager;
     RadioGroup gpaRadioGroup;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +35,8 @@ public class HomeActivity extends AppCompatActivity
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        SectionsPagerAdapter mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        ViewPager mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setOffscreenPageLimit(2);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
@@ -56,7 +45,7 @@ public class HomeActivity extends AppCompatActivity
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
         navigationDrawer();
     }
-        private class SectionsPagerAdapter extends FragmentPagerAdapter {
+    private class SectionsPagerAdapter extends FragmentPagerAdapter {
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
@@ -113,9 +102,8 @@ public class HomeActivity extends AppCompatActivity
                 }).create().show();
     }
     public void navigationDrawer() {
-        nview = (NavigationView) findViewById(R.id.navigation_view);
+        NavigationView nview = (NavigationView) findViewById(R.id.navigation_view);
         nview.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 int id = menuItem.getItemId();
@@ -218,11 +206,12 @@ public class HomeActivity extends AppCompatActivity
                 return true;
             }
         });
-        dtoogle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.draweropen, R.string.drawerclose) {
+        ActionBarDrawerToggle dtoogle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.draweropen, R.string.drawerclose) {
             @Override
             public void onDrawerClosed(View v) {
                 super.onDrawerClosed(v);
             }
+
             @Override
             public void onDrawerOpened(View v) {
                 super.onDrawerOpened(v);
