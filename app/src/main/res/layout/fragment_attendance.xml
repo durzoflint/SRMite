@@ -2,17 +2,19 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:ads="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:text="Coursewise Attendance"
+        android:id="@+id/attendance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/adView"
         android:layout_centerHorizontal="true"
-        android:id="@+id/attendance"
-        android:textSize="24sp"
-        android:paddingTop="6dp" />
+        android:paddingTop="6dp"
+        android:text="Coursewise Attendance"
+        android:textColor="@android:color/white"
+        android:textSize="24sp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -22,110 +24,68 @@
         android:id="@+id/date"
         android:textSize="14sp" />
 
-    <LinearLayout
-        android:orientation="vertical"
+    <ScrollView
+        android:layout_below="@+id/date"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/date"
-        android:layout_alignParentStart="true">
+        android:paddingBottom="10dp">
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/totaldata"
-            android:paddingLeft="6dp"
-            android:paddingRight="6dp"
-            android:paddingBottom="6dp">
-
-            <TextView
-                android:text="Max Hours"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/maxhourstext"
-                android:layout_weight="1"
-                android:paddingTop="6dp"
-                android:paddingRight="6dp"
-                android:gravity="center_horizontal" />
-
-            <TextView
-                android:text="Att. Hours"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/atthourstext"
-                android:layout_weight="1"
-                android:paddingLeft="6dp"
-                android:paddingTop="6dp"
-                android:paddingRight="6dp"
-                android:gravity="center_horizontal" />
-
-            <TextView
-                android:text="Absent Hours"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/absenthourstext"
-                android:layout_weight="1"
-                android:paddingLeft="6dp"
-                android:paddingTop="6dp"
-                android:paddingRight="6dp"
-                android:gravity="center_horizontal" />
-
-            <TextView
-                android:text="Average %"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/averagetext"
-                android:layout_weight="1"
-                android:paddingLeft="6dp"
-                android:paddingTop="6dp"
-                android:paddingRight="6dp"
-                android:gravity="center_horizontal" />
-
-            <TextView
-                android:text="OD/ML %"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/od_mltext"
-                android:layout_weight="1"
-                android:paddingLeft="6dp"
-                android:paddingTop="6dp"
-                android:paddingRight="6dp"
-                android:gravity="center_horizontal" />
-
-            <TextView
-                android:text="Total %"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/totalpercentage"
-                android:layout_weight="1"
-                android:paddingLeft="6dp"
-                android:paddingTop="6dp"
-                android:paddingRight="6dp"
-                android:gravity="center_horizontal" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="@android:color/black" />
-
-        <ScrollView
+            android:id="@+id/attendancedata"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingBottom="10dp">
+            android:foregroundGravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="50dp"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp" >
 
-            <LinearLayout
-                android:id="@+id/attendancedata"
-                android:layout_width="match_parent"
+            <android.support.v7.widget.CardView
+                android:id="@+id/myCard"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:foregroundGravity="center"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:paddingBottom="50dp"
-                android:paddingEnd="10dp"
-                android:paddingStart="10dp" />
-        </ScrollView>
-    </LinearLayout>
+                android:layout_gravity="center_horizontal">
+
+                <pl.pawelkleczkowski.customgauge.CustomGauge
+                    android:id="@+id/gauge1"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_centerHorizontal="true"
+                    android:paddingBottom="20dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingTop="20dp"
+                    app:gaugeEndValue="100"
+                    app:gaugePointEndColor="#eb825a"
+                    app:gaugePointStartColor="#eb825a"
+                    app:gaugeStartAngle="135"
+                    app:gaugeStartValue="0"
+                    app:gaugeStrokeCap="ROUND"
+                    app:gaugeStrokeColor="@android:color/darker_gray"
+                    app:gaugeStrokeWidth="10dp"
+                    app:gaugeSweepAngle="270" />
+
+                <TextView
+                    android:id="@+id/totalpercentage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Not available"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginBottom="10dp"
+                    android:text="Total"
+                    android:textSize="24sp" />
+
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"

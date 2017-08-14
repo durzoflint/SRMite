@@ -118,7 +118,7 @@ public class LoginActivity extends AppCompatActivity {
         profiledetails=new ArrayList<>();
         data=new ArrayList<>();
         webview=(WebView)findViewById(R.id.webview);
-        webview.setVisibility(View.GONE);
+        //webview.setVisibility(View.GONE);
         WebSettings webSettings=webview.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webview.addJavascriptInterface(new MyJavaScriptInterface(), "HtmlViewer");

@@ -75,7 +75,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="5dp"
                         android:layout_marginTop="10dp"
-                        android:text="CheckBox" />
+                        android:text="Remember Me" />
 
                     <ImageView
                         android:id="@+id/submit_button"
@@ -84,6 +84,8 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="5dp"
                         android:paddingBottom="40dp"
+                        android:paddingEnd="10dp"
+                        android:paddingStart="10dp"
                         android:paddingTop="10dp"
                         card_view:srcCompat="@drawable/ic_highlight_off_black_24dp" />
 
@@ -93,7 +95,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
@@ -128,6 +130,7 @@
         android:id="@+id/webview"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"
+        android:visibility="gone" />
 
 </RelativeLayout>

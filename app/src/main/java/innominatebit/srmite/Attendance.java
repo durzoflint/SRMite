@@ -1,9 +1,12 @@
 package innominatebit.srmite;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.text.TextUtils;
 import android.view.Gravity;
@@ -11,10 +14,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+
+import pl.pawelkleczkowski.customgauge.CustomGauge;
 
 public class Attendance extends Fragment {
     @Override
@@ -30,14 +36,39 @@ public class Attendance extends Fragment {
         LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams
                 .WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         textParams.gravity=Gravity.CENTER;
-        Context context=this.getContext();
+        final Context context=this.getContext();
         if(!LoginActivity.attendancenotfound)
         {
-            String datatotal[]=LoginActivity.attendancedata,temporary,
-                    startdate=LoginActivity.startdate,enddate=LoginActivity.enddate;
-            int i=0;
-            double temp;
-            TextView date=(TextView)rootView.findViewById(R.id.date);
+            final String datatotal[]=LoginActivity.attendancedata;
+            String temporary;
+            final String startdate=LoginActivity.startdate;
+            final String enddate=LoginActivity.enddate;
+            double temp=Double.parseDouble(datatotal[5]);
+            CustomGauge myGauge = (CustomGauge) rootView.findViewById(R.id.gauge1);
+            myGauge.setValue((int)(temp));
+            TextView totalpercentage=(TextView)rootView.findViewById(R.id.totalpercentage);
+            totalpercentage.setText(temp+"%");
+            if(temp<=75)
+                totalpercentage.setTextColor(Color.RED);
+            CardView cardView = (CardView) rootView.findViewById(R.id.myCard);
+            cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    new AlertDialog.Builder(context)
+                            .setTitle("Overall Attendance")
+                            .setMessage("Maximun Hours : "+datatotal[0]
+                                    +"\nAttended Hours : "+datatotal[1]
+                                    +"\nAbsent Hours : "+datatotal[2]
+                                    +"\nAverage Hours : "+datatotal[3]
+                                    +"\nOD/ML Percentage : "+datatotal[4]
+                                    +"\nTotal Percentage: "+datatotal[5]
+                                    +"\n\n(From "+startdate+" till "+enddate+")")
+                            .setPositiveButton(android.R.string.ok, null)
+                            .setIcon(android.R.drawable.ic_dialog_info)
+                            .create().show();
+                }
+            });
+            /*TextView date=(TextView)rootView.findViewById(R.id.date);
             date.setText("From "+startdate+" To "+enddate);
             TextView tv1=(TextView)rootView.findViewById(R.id.maxhourstext);
             tv1.setText(tv1.getText()+"\n"+datatotal[i++]);
@@ -54,10 +85,10 @@ public class Attendance extends Fragment {
             temp=Double.parseDouble(temporary);
             tv6.setText(tv6.getText()+"\n"+temp);
             if(temp<=75)
-                tv6.setTextColor(Color.RED);
-            Subject sub[]=LoginActivity.subjects;
+                tv6.setTextColor(Color.RED);*/
+            final Subject sub[]=LoginActivity.subjects;
             LinearLayout previousLinearLayout = new LinearLayout(context);
-            for(i=0;i<sub.length;i++)
+            for(int i=0;i<sub.length;i++)
             {
                 CardView c = new CardView(context);
                 c.setLayoutParams(lparams);
@@ -71,13 +102,6 @@ public class Attendance extends Fragment {
                 t1.setPadding(0,8,0,8);
                 t1.setTextSize(19);
                 t1.setGravity(Gravity.CENTER);
-                /*TextView t2=new TextView(context);
-                t2.setLayoutParams(textParams);
-                t2.setText(sub[i].subjectcode+"\n");
-                //t2.setPadding(30,10,30,10);
-                t2.setTextSize(19);
-                t2.setGravity(Gravity.CENTER);
-                xyz.addView(t2);*/
                 TextView t8=new TextView(context);
                 t8.setLayoutParams(textParams);
                 temporary=sub[i].total;
@@ -103,43 +127,26 @@ public class Attendance extends Fragment {
                 t8.setGravity(Gravity.CENTER);
                 xyz.addView(t1);
                 xyz.addView(t8);
-                /*
-                TextView t3=new TextView(context);
-                t3.setLayoutParams(textParams);
-                t3.setText("Max Hours : "+sub[i].maxhours);
-                //t3.setPadding(30,6,0,6);
-                t3.setTextSize(16);
-                //t3.setGravity(Gravity.CENTER);
-                xyz.addView(t3);
-                TextView t4=new TextView(context);
-                t4.setLayoutParams(textParams);
-                t4.setText("Att. Hours : "+sub[i].atthours);
-                //t4.setPadding(30,6,0,6);
-                t4.setTextSize(16);
-                //t4.setGravity(Gravity.CENTER);
-                xyz.addView(t4);
-                TextView t5=new TextView(context);
-                t5.setLayoutParams(textParams);
-                t5.setText("Absent Hours : "+sub[i].absenthours);
-                //t5.setPadding(30,6,0,6);
-                t5.setTextSize(16);
-                //t5.setGravity(Gravity.CENTER);
-                xyz.addView(t5);
-                TextView t6=new TextView(context);
-                t6.setLayoutParams(textParams);
-                t6.setText("Average Percentage : "+sub[i].average);
-                //t6.setPadding(30,6,0,6);
-                t6.setTextSize(16);
-                //t6.setGravity(Gravity.CENTER);
-                xyz.addView(t6);
-                TextView t7=new TextView(context);
-                t7.setLayoutParams(textParams);
-                t7.setText("OD / ML Percentage : "+sub[i].OD_ML);
-                //t7.setPadding(30,6,0,6);
-                t7.setTextSize(16);
-                //t7.setGravity(Gravity.CENTER);
-                xyz.addView(t7);*/
                 c.addView(xyz);
+                final int finalI = i;
+                c.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Subject tempSubject = sub[finalI];
+                        new AlertDialog.Builder(context)
+                                .setTitle(tempSubject.subjectname)
+                                .setMessage("Subject Code : "+tempSubject.subjectcode
+                                        +"\nMax. Hours : "+tempSubject.maxhours
+                                        +"\nAtt. Hours : "+tempSubject.atthours
+                                        +"\nAbsent Hours : "+tempSubject.absenthours
+                                        +"\nAverage Percentage : "+tempSubject.average
+                                        +"\nOD/ML Percentage : "+tempSubject.OD_ML
+                                        +"\nTotal Percentage: "+tempSubject.total)
+                                .setPositiveButton(android.R.string.ok, null)
+                                .setIcon(android.R.drawable.ic_dialog_info)
+                                .create().show();
+                    }
+                });
                 if(i%2 == 0)
                 {
                     LinearLayout myLinearLayout = new LinearLayout(context);
@@ -147,21 +154,20 @@ public class Attendance extends Fragment {
                     myLinearLayout.setOrientation(LinearLayout.HORIZONTAL);
                     myLinearLayout.addView(c);
                     previousLinearLayout = myLinearLayout;
+                    if(i+1==sub.length)
+                        totaldata.addView(previousLinearLayout);
                 }
                 else
                 {
                     previousLinearLayout.addView(c);
                     totaldata.addView(previousLinearLayout);
                 }
-                //totaldata.addView(c);
             }
         }
         else
         {
             TextView tv=(TextView)rootView.findViewById(R.id.attendance);
             tv.setText("No Record(s) Found");
-            LinearLayout linearLayout=(LinearLayout)rootView.findViewById(R.id.totaldata);
-            linearLayout.setVisibility(View.GONE);
         }
         return rootView;
     }
