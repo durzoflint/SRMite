@@ -4,7 +4,7 @@
     android:id="@+id/rl"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
+    android:background="@drawable/background"
     tools:context="innominatebit.srmite.AdvertismentActivity">
 
     <!--ImageView

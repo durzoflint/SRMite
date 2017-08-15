@@ -1,76 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    android:paddingEnd="6dp"
     android:paddingLeft="6dp"
     android:paddingRight="6dp"
-    android:paddingStart="6dp"
-    android:paddingEnd="6dp">
+    android:paddingStart="6dp">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical">
 
         <Spinner
+            android:id="@+id/subjectlist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:id="@+id/subjectlist"
             android:gravity="center" />
 
         <TextView
-            android:text="Enter the number of classes you wish to attend."
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/attendhours"
-            android:layout_marginTop="29dp"
-            android:gravity="center" />
-
-        <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="3"
-            android:id="@+id/hoursinput"
-            android:textSize="19sp"
-            android:hint="0"
+            android:layout_marginTop="29dp"
             android:gravity="center"
-            android:layout_marginTop="12dp" />
+            android:text="Enter the number of classes you wish to attend." />
+
+        <EditText
+            android:id="@+id/hoursinput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:ems="3"
+            android:gravity="center"
+            android:hint="0"
+            android:inputType="number"
+            android:textSize="19sp" />
 
         <TextView
-            android:text="Enter the number of classes you don't wish to attend"
+            android:id="@+id/notattend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:id="@+id/notattend" />
+            android:text="Enter the number of classes you don't wish to attend" />
 
         <EditText
+            android:id="@+id/bunkinput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="3"
-            android:id="@+id/bunkinput"
             android:layout_marginTop="12dp"
-            android:hint="0"
+            android:ems="3"
             android:gravity="center_vertical|center"
+            android:hint="0"
+            android:inputType="number"
             android:textSize="19sp" />
 
         <Button
-            android:text="Check"
+            android:id="@+id/check"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:id="@+id/check" />
+            android:text="Check" />
 
         <TextView
+            android:id="@+id/answertext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:id="@+id/answertext"
-            android:textSize="18sp"
-            android:gravity="center" />
+            android:gravity="center"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/message"

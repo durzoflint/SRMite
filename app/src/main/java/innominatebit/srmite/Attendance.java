@@ -66,7 +66,6 @@ public class Attendance extends Fragment {
                                     +"\nTotal Percentage: "+datatotal[5]
                                     +"\n\n(From "+startdate+" till "+enddate+")")
                             .setPositiveButton(android.R.string.ok, null)
-                            .setIcon(android.R.drawable.ic_dialog_info)
                             .create().show();
                 }
             });
@@ -141,7 +140,6 @@ public class Attendance extends Fragment {
                                         +"\nOD/ML Percentage : "+tempSubject.OD_ML
                                         +"\nTotal Percentage: "+tempSubject.total)
                                 .setPositiveButton(android.R.string.ok, null)
-                                .setIcon(android.R.drawable.ic_dialog_info)
                                 .create().show();
                     }
                 });

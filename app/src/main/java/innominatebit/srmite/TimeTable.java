@@ -1,7 +1,6 @@
 package innominatebit.srmite;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -14,11 +13,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-
 import java.util.ArrayList;
 
 public class TimeTable extends Fragment
@@ -85,7 +81,6 @@ public class TimeTable extends Fragment
                         TextView tempTV = new TextView(context);
                         tempTV.setLayoutParams(tv1Params);
                         tempTV.setGravity(Gravity.CENTER);
-                        //tempTV.setPadding(6,6,6,6);
                         tempTV.setText("Hour "+k);
                         tempLL.addView(tempTV);
                         String tempSchedule ="";
@@ -104,7 +99,6 @@ public class TimeTable extends Fragment
                         tempTV2.setLayoutParams(tv2Params);
                         tempTV2.setGravity(Gravity.CENTER);
                         tempTV2.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.leftborder));
-                        //tempTV2.setPadding(6,6,6,6);
                         tempTV2.setText(tempSchedule.substring(0, tempSchedule.length()-2));
                         tempLL.addView(tempTV2);
                         table.addView(tempLL);
@@ -113,7 +107,6 @@ public class TimeTable extends Fragment
                             .setTitle(days.get(finalI))
                             .setView(timeTableDialog)
                             .setPositiveButton(android.R.string.ok, null)
-                            .setIcon(android.R.drawable.ic_dialog_info)
                             .create().show();
                 }
             });

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context="innominatebit.srmite.CGPA">
 
     <TextView
@@ -54,13 +54,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/calculate"
-        android:layout_below="@+id/totalcreditinfo"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/totalcreditinfo">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <LinearLayout
                 android:id="@+id/gpadata"
@@ -82,7 +82,8 @@
                         android:ems="12"
                         android:gravity="center_horizontal|center"
                         android:hint="Enter the Number of Semesters"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:textColor="@android:color/white" />
 
                     <Button
                         android:id="@+id/submit"
