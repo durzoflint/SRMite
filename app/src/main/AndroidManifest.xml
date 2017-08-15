@@ -35,6 +35,16 @@
             android:label="@string/title_activity_sgpa"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".CGPA" />
+
+        <!-- Set custom default icon. This is used when no icon is set for incoming notification messages. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/srmite_logo_notification" />
+        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming notification message. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+
     </application>
 
 </manifest>

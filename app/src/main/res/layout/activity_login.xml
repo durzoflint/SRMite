@@ -54,7 +54,8 @@
                         android:layout_marginTop="10dp"
                         android:ems="12"
                         android:gravity="center"
-                        android:hint="Register Number / Student ID" />
+                        android:hint="Register Number / Student ID"
+                        android:inputType="text" />
 
                     <EditText
                         android:id="@+id/password"

@@ -94,14 +94,14 @@ public class Attendance extends Fragment {
                     t8.setText(temporary+"%\n");
                     t8.setTextColor(Color.WHITE);
                     t1.setTextColor(Color.WHITE);
-                    c.setCardBackgroundColor(Color.RED);
+                    c.setCardBackgroundColor(Color.rgb(195, 39, 43));
                 }
                 else if(temp<75)
                 {
                     t8.setText(temporary+"%\n"+calculate(sub[i].maxhours,sub[i].absenthours));
                     t8.setTextColor(Color.WHITE);
                     t1.setTextColor(Color.WHITE);
-                    c.setCardBackgroundColor(Color.RED);
+                    c.setCardBackgroundColor(Color.rgb(195, 39, 43));
                 }
                 else
                     t8.setText(temporary+"%\n");
@@ -116,11 +116,7 @@ public class Attendance extends Fragment {
                         return true;
                     }
                 });
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    seekBar.setProgress((int)temp, true);
-                }
-                else
-                    seekBar.setProgress((int)temp);
+                seekBar.setProgress((int)temp);
                 xyz.addView(t1);
                 xyz.addView(t8);
                 xyz.addView(seekBar);
