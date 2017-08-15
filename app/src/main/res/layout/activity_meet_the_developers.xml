@@ -12,12 +12,12 @@
     tools:context="innominatebit.srmite.MeetTheDevelopers">
 
     <ImageView
+        android:id="@+id/logo"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        app:srcCompat="@drawable/srmite"
-        android:id="@+id/logo"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/web_hi_res_512" />
 
     <ScrollView
         android:layout_width="match_parent"

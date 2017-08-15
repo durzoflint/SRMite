@@ -3,38 +3,38 @@
     tools:context="innominatebit.srmite.HomeActivity">
     <item
         android:id="@+id/gpacalc"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_assessment_black_36dp"
         android:title="GPA Calculator" />
     <item
         android:id="@+id/action_attendancegenie"
         android:title="Attendance Genie"
-        android:icon="@mipmap/ic_launcher" />
+        android:icon="@drawable/ic_auto_fix_black_36dp" />
     <item
         android:id="@+id/action_rate"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_grade_black_36dp"
         android:title="Love Us? Rate Us!" />
     <item
         android:id="@+id/action_ad"
         android:title="Events/Fests"
-        android:icon="@mipmap/ic_launcher" />
+        android:icon="@drawable/ic_event_black_36dp" />
     <item
         android:id="@+id/action_contactus"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_contacts_black_36dp"
         android:title="Contact Us" />
     <item
         android:id="@+id/aboutus"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_code_black_36dp"
         android:title="Meet the Developers" />
     <item
         android:id="@+id/donateus"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_currency_inr_black_36dp"
         android:title="Donate Us" />
     <item
         android:id="@+id/action_about"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_info_outline_black_36dp"
         android:title="About the App" />
     <item
         android:id="@+id/action_logout"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_exit_to_app_black_36dp"
         android:title="Logout" />
 </menu>
