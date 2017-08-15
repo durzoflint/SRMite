@@ -30,7 +30,7 @@
     </style>
 
     <style name="MySeekBar" parent="@style/Widget.AppCompat.SeekBar" >
-        <item name="colorAccent">#00ff00</item>
+        <item name="colorAccent">#eb825a</item>
     </style>
 
 </resources>
