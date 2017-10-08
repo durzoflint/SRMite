@@ -7,8 +7,8 @@ android {
         applicationId "innominatebit.srmite"
         minSdkVersion 19
         targetSdkVersion 25
-        versionCode 11
-        versionName "1.6.0"
+        versionCode 12
+        versionName "2.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
