@@ -1,9 +1,7 @@
 package innominatebit.srmite;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 public class AboutUs extends AppCompatActivity {

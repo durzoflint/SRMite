@@ -8,10 +8,10 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.JavascriptInterface;
@@ -24,7 +24,9 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
 import com.google.android.gms.ads.MobileAds;
+
 import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity {
@@ -490,11 +492,11 @@ public class LoginActivity extends AppCompatActivity {
             rawdata = rawdata.substring(j + 12);
             j = rawdata.indexOf("tablecontent01");
             String legend = rawdata.substring(j + 12);
-            legendMeaning.add(getData(legend));;
+            legendMeaning.add(getData(legend));
             rawdata = rawdata.substring(j + 12);
         }
         legends.add("-");
-        legendMeaning.add("FREE HOUR");;
+        legendMeaning.add("FREE HOUR");
         data.clear();
     }
     void processAttendance() {
